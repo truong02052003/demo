@@ -1,0 +1,65 @@
+<%- include('../master/header.ejs') %>
+
+<div class="content-wrapper">
+  <section class="content-header">
+    <h1>Danh sách sản phẩm</h1>
+    <a href="/products/create" class="btn btn-primary">Thêm mới</a>
+  </section>
+
+  <section class="content">
+    <div class="box">
+      <div class="box-body">
+        <% if (messages.ok) { %>
+          <div class="alert alert-success">
+            <i class="fa fa-check-circle" aria-hidden="true"></i>
+            <%= messages.ok %>
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+          </div>
+        <% } %>
+        <% if (messages.no) { %>
+          <div class="alert alert-danger">
+            <i class="fa fa-times-circle" aria-hidden="true"></i>
+            <%= messages.no %>
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+          </div>
+        <% } %>
+        <table class="table">
+          <thead>
+            <tr>
+              <th>STT</th>
+              <th>Name</th>
+              <th>Image</th>
+              <th>Price</th>
+              <th>Sale Price</th>
+              <th>Status</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% products.forEach((product, index) => { %>
+              <tr>
+                <td><%= product.id %></td>
+                <td><%= product.name %></td>
+                <td><img src="/uploads/<%= product.image %>" alt="Product Image" width="100"></td>
+                <td><%= product.price %></td>
+                <td><%= product.sale_price %></td>
+                <td><%= product.status %></td>
+                <td>
+                  <a href="/products/edit/<%= product.id %>" class="btn btn-warning btn-sm">Edit</a>
+                  <a href="/products/delete/<%= product.id %>" class="btn btn-danger btn-sm">Delete</a>
+                </td>
+              </tr>
+            <% }); %>
+          </tbody>
+        </table>
+      <div class="pagination">
+        <% for (let i = 1; i <= totalPages; i++) { %>
+          <a style="color: rgb(61, 182, 61);" href="?page=<%= i %>" class="<%= currentPage === i ? 'active' : '' %>"><%= i %></a>
+        <% } %>
+      </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<%- include('../master/footer.ejs') %>

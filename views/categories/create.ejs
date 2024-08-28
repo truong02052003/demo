@@ -1,0 +1,46 @@
+<%- include('../master/header.ejs') %>
+
+<div class="content-wrapper">
+  <section class="content-header">
+    <h1>Thêm mới danh mục sản phẩm</h1>
+  </section>
+
+  <section class="content">
+    <div class="box">
+      <div class="box-body">
+
+        <!-- Form tạo sản phẩm mới -->
+        <form action="/categories/create" method="post">
+          <div class="form-group">
+            <label for="name">Tên Sản Phẩm</label>
+            <input type="text" class="form-control" name="name" id="name" placeholder="Nhập tên sản phẩm" required>
+          </div>
+
+          <div class="form-group">
+            <label>Trạng Thái</label>
+            <div class="radio">
+              <label>
+                <input type="radio" name="status" value="1" checked="checked">
+                Hiện
+              </label>
+            </div>
+            <div class="radio">
+              <label>
+                <input type="radio" name="status" value="0">
+                Ẩn
+              </label>
+            </div>
+          </div>
+
+          <!-- Nút lưu -->
+          <button type="submit" class="btn btn-primary">Lưu lại</button>
+          <a href="/categories" class="btn btn-default">Trở lại</a>
+        </form>
+
+
+      </div>
+    </div>
+  </section>
+</div>
+
+<%- include('../master/footer.ejs') %>
